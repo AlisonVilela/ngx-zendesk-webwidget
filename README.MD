@@ -16,7 +16,7 @@ $ npm install ngx-zendesk-webwidget --save
 
 #### 1. Import the `ngxZendeskWebwidgetModule`:
 
-```typescript
+```ts
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -80,7 +80,7 @@ export class AppModule { }
 
 #### 2. Init the `ngxZendeskWebwidgetService` for your application:
 
-```xml
+```ts
 import { ngxZendeskWebwidgetService } from 'ngx-zendesk-webwidget';
 
 @Component({
@@ -96,7 +96,7 @@ export class app {
 
 #### 3. Example to usage:
 
-```xml
+```ts
   constructor(private _ngxZendeskWebwidgetService: ngxZendeskWebwidgetService) {
     _ngxZendeskWebwidgetService.identify({
      name: 'Alison Vilela',
