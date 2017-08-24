@@ -1,0 +1,28 @@
+{
+  "name": "ngx-zendesk-webwidget",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlisonVilela/ngx-zendesk-webwidget.git"
+  },
+  "author": {
+    "name": "Alison Vilela",
+    "email": "alison.vilela@live.nl"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlisonVilela/ngx-zendesk-webwidget.git/issues"
+  },
+  "main": "ngx-zendesk-webwidget.umd.js",
+  "module": "ngx-zendesk-webwidget.js",
+  "jsnext:main": "ngx-zendesk-webwidget.js",
+  "typings": "ngx-zendesk-webwidget.d.ts",
+  "peerDependencies": {
+    "@angular/core": "^4.0.0",
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.8.4"
+  }
+}
