@@ -140,6 +140,10 @@ MIT © [Alison Vilela](https://github.com/AlisonVilela)
 
 ## Change log
 
+### v0.1.1
+
+- Change documentation
+
 ### v0.1.0
 
 - Added documentation
