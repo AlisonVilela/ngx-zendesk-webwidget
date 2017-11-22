@@ -1,12 +1,18 @@
+[![Dependency Status](https://dependencyci.com/github/AlisonVilela/ngx-zendesk-webwidget/badge)](https://dependencyci.com/github/AlisonVilela/ngx-zendesk-webwidget)
+[![Maintainability](https://api.codeclimate.com/v1/badges/75bc5877b3bf6939fe44/maintainability)](https://codeclimate.com/github/AlisonVilela/ngx-zendesk-webwidget/maintainability)
+[![Build Status](https://travis-ci.org/AlisonVilela/ngx-zendesk-webwidget.svg?branch=master)](https://travis-ci.org/AlisonVilela/ngx-zendesk-webwidget)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/AlisonVilela/ngx-zendesk-webwidget/issues)
+[![Join the chat at https://gitter.im/ngx-zendesk-webwidget/Lobby](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dwyl/?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 # ngx-zendesk-webwidget
 
-Zendesk-Webwidget for Angular 4+
+Zendesk-Webwidget for Angular 2+
 
 Zendesk-Webwidget for Angular 1.x see [here](https://github.com/CrossLead/angular-zendesk-widget)
 
 ## Installation
 
-Via npm:
+Via [npm](https://www.npmjs.com/package/ngx-zendesk-webwidget):
 
 ```bash
 $ npm install ngx-zendesk-webwidget --save
@@ -140,6 +146,10 @@ Please report bugs and issues [here](https://github.com/AlisonVilela/ngx-zendesk
 MIT © [Alison Vilela](https://github.com/AlisonVilela)
 
 ## Change log
+
+### v0.1.2
+
+- Added custom settings
 
 ### v0.1.1
 
