@@ -6,4 +6,8 @@ install:
   - npm install
 script:
   - npm run build
-  - npm publish dist
+  - cd dist
+deploy:
+  provider: npm
+  email: alison.vilela@live.nl
+  api_key: $NPM_TOKEN
