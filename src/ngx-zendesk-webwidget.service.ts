@@ -108,4 +108,8 @@ export class ngxZendeskWebwidgetService {
     })
   }
 
+  public setSettings(settings) {
+    this.window.zESettings = settings
+  }
+
 }
