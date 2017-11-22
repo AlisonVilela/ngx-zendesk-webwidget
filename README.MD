@@ -122,6 +122,7 @@ export class app {
 - `show()`: The method displays the Widget on the host page in its starting 'button' state.
 - `activate(options)`: The method activates and opens the Widget in its starting state.
 - `setHelpCenterSuggestions(options)`: The method enhances the contextual help provided by the Web Widget.
+- `setSettings(settings)`: The method sets `window.zESettings`.
 
 For more info, see: [ZendeskAPI](https://developer.zendesk.com/embeddables/docs/widget/api)
 
