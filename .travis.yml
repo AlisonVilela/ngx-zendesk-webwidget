@@ -10,8 +10,7 @@ before_deploy:
 deploy:
   provider: npm
   email: alison.vilela@live.nl
-  skip_cleanup: true
   api_key:
-    secure: p8YMr9f69tlxHIjJbzkRsxSL/Tc2VMtRELApVSH+V+LErkmMYRSxPCBLQjckxa9HJrsMUUgfqPR+jxggKZI25VXR+VqUiWpYVNnsarzQMa65z1O/EQKQu5xuK3T30hpQQ7JX8sF5cZ4J7WW65Ih+grvlGi5pgigCtcNc8yR+I8+igB29FwqyGxvqnVuijQByEFn81THt0A8etHXazV/S0RQ9BnZ9UFu3iGXqkYkGf4vY20CBv4RNlVSfW46ZYgsT3fbIQ3gpqwNms4HNdZT3zq1elUlZBd0tEp6tclLnVF/QSrnqeGzTGjNRKmw5GcL/LCYpO/8CWXfb/hnhNCVF55mA02ntOeJJuixJeTieXfYp2F3b9Sn9/McsgDJvTyWqTCcSxEXmnmwxm5QmfFaYClX4meVbTsqsqCLqX1vM+2JLBeUuaEo9ldG91AMAZJosNSGOpJc2/f8l9A2NlxiKqP98rfp8uCiaUEshHS4k+ySZHxQa9Bt0qWBXyGYiud6hubYQhbIkS+VB28U889CtVY6TGBVkmuP98YhB+a35e/OhsHGH1MbjhYEVmpVAIGOBQxxKN2xJc/zP4aY1rPHtpcUIXwKJPYcq8uqiG4MkvznGNnvsHKeknLqUqDmFlU+MQuywaipvPl7wE3jZmHQsS1h3IJuTKD/G1tvvfkmzHuQ=
+    secure: $NPM_TOKEN
   on:
     branch: master
