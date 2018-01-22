@@ -1,4 +1,4 @@
 export abstract class ngxZendeskWebwidgetConfig {
-  accountUrl: string;
+  abstract accountUrl: string;
   abstract beforePageLoad(zE): any;
 }
