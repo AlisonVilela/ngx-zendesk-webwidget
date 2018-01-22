@@ -21,7 +21,7 @@
   "jsnext:main": "ngx-zendesk-webwidget.js",
   "typings": "ngx-zendesk-webwidget.d.ts",
   "peerDependencies": {
-    "@angular/core": "^4.0.0",
+    "@angular/core": "^5.1.2",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
   }

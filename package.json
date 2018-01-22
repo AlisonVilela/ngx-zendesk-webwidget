@@ -1,6 +1,6 @@
 {
   "name": "ngx-zendesk-webwidget",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
@@ -26,12 +26,12 @@
     "url": "https://github.com/AlisonVilela/ngx-zendesk-webwidget/issues"
   },
   "devDependencies": {
-    "@angular/common": "^4.0.0",
-    "@angular/compiler": "^4.0.0",
+    "@angular/common": "^5.1.2",
+    "@angular/compiler": "^5.1.2",
     "@angular/compiler-cli": "^4.0.0",
-    "@angular/core": "^4.0.0",
-    "@angular/platform-browser": "^4.0.0",
-    "@angular/platform-browser-dynamic": "^4.0.0",
+    "@angular/core": "^5.1.2",
+    "@angular/platform-browser": "^5.1.2",
+    "@angular/platform-browser-dynamic": "^5.1.2",
     "@compodoc/compodoc": "^1.0.0-beta.10",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
