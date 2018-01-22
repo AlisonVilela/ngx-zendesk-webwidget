@@ -66,11 +66,11 @@ import {ngxZendeskWebwidgetModule, ngxZendeskWebwidgetConfig} from 'ngx-zendesk-
 import {AppComponent} from './app';
 
 export class ZendeskConfig extends ngxZendeskWebwidgetConfig {
-  accountUrl: 'yourdomain.zendesk.com';
-  beforePageLoad: (zE) => {
-    zE.setLocale('en')
-    zE.hide()
-  };
+  accountUrl = 'yourdomain.zendesk.com';
+  beforePageLoad(zE) {
+    zE.setLocale('en');
+    zE.hide();
+  }
 }
 
 @NgModule({
@@ -146,6 +146,10 @@ Please report bugs and issues [here](https://github.com/AlisonVilela/ngx-zendesk
 MIT © [Alison Vilela](https://github.com/AlisonVilela)
 
 ## Change log
+
+### v0.1.3
+
+- Support Angular 5
 
 ### v0.1.2
 
