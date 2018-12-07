@@ -18,7 +18,7 @@ Via [npm](https://www.npmjs.com/package/ngx-zendesk-webwidget):
 $ npm install ngx-zendesk-webwidget --save
 ```
 
-## Usage
+## Normal Usage (no lazyload)
 
 #### 1. Import the `ngxZendeskWebwidgetModule`:
 
@@ -66,6 +66,7 @@ import {ngxZendeskWebwidgetModule, ngxZendeskWebwidgetConfig} from 'ngx-zendesk-
 import {AppComponent} from './app';
 
 export class ZendeskConfig extends ngxZendeskWebwidgetConfig {
+  lazyLoad = false;
   accountUrl = 'yourdomain.zendesk.com';
   beforePageLoad(zE) {
     zE.setLocale('en');
@@ -116,6 +117,25 @@ export class app {
   }
 }
 ```
+
+## Lazy load Usage
+
+#### 1. Configuration
+
+- same config, just switch lazyLoad = true inside ZendeskConfig
+
+#### 2. Load
+
+- create a custom button inside your webapp 
+
+```ts
+	public initZendesk(): void {
+		console.log("initZendesk");
+		this.zendeskWidgetService.initZendesk();
+	}
+```
+
+
 ## API
 
 ### ngxZendeskWebwidgetService
