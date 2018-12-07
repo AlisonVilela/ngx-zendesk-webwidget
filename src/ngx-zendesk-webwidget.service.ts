@@ -28,7 +28,6 @@ export class ngxZendeskWebwidgetService {
 
     if (!_ngxZendeskWebwidgetConfig.lazyLoad) {
       this.initZendesk();
-      this.initialized = true;
     }
 
   }
