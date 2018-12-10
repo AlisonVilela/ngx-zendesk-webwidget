@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from "rxjs";
-
 import { ngxZendeskWebwidgetConfig } from './ngx-zendesk-webwidget.model';
 
 function getWindow (): any {
@@ -73,9 +71,10 @@ export class ngxZendeskWebwidgetService {
   }
 
 
-  public initZendesk() {
+  public initZendesk(): Promise<boolean> {
     let window = this.window
     let config = this._ngxZendeskWebwidgetConfig;
+
     // Following is essentially a copy paste of JS portion of the Zendesk embed code
     // with our settings subbed in. For more info, see:
     // https://support.zendesk.com/hc/en-us/articles/203908456-Using-Web-Widget-to-embed-customer-service-in-your-website
@@ -114,12 +113,28 @@ export class ngxZendeskWebwidgetService {
       o.close()
     }();
 
-    this.window.zE(() => {
-      config.beforePageLoad(this.window.zE)
-      }
-    )
+    // Following is aimed to convert the state as a promise in order to be notified
+    // when the lazy loading is done.
+    return this.finishLoading(config);
 
-    this.initialized = true;
+  }
+
+  private finishLoading(config: ngxZendeskWebwidgetConfig): Promise<boolean> {
+    const promise = new Promise<boolean>((resolve, reject) => {
+      this.window.zE(() => {
+        config.beforePageLoad(this.window.zE);
+        this.initialized = true;
+        resolve(true);
+        }
+      )
+      setTimeout(() => {
+       this.initialized = false;
+       reject(Error('failed'));
+      }, 15000);
+
+    });
+
+    return promise;
   }
 
   public isInitialized(): boolean {
