@@ -121,16 +121,19 @@ export class ngxZendeskWebwidgetService {
 
   private finishLoading(config: ngxZendeskWebwidgetConfig): Promise<boolean> {
     const promise = new Promise<boolean>((resolve, reject) => {
+
+      let timeout = setTimeout(() => {
+        this.initialized = false;
+        reject(Error('failed'));
+       }, 15000);
+
       this.window.zE(() => {
         config.beforePageLoad(this.window.zE);
         this.initialized = true;
+        clearTimeout(timeout);
         resolve(true);
         }
       )
-      setTimeout(() => {
-       this.initialized = false;
-       reject(Error('failed'));
-      }, 15000);
 
     });
 
