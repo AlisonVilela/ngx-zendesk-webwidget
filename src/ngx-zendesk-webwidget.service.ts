@@ -124,8 +124,8 @@ export class ngxZendeskWebwidgetService {
 
       let timeout = setTimeout(() => {
         this.initialized = false;
-        reject(Error('failed'));
-       }, 15000);
+        reject(Error('timeout'));
+       }, 60000);
 
       this.window.zE(() => {
         config.beforePageLoad(this.window.zE);
