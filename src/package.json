@@ -1,6 +1,6 @@
 {
   "name": "ng-zendesk-webwidget",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/mackelito/ng-zendesk-webwidget.git"
@@ -22,8 +22,8 @@
   "jsnext:main": "ng-zendesk-webwidget.js",
   "typings": "ng-zendesk-webwidget.d.ts",
   "peerDependencies": {
-    "@angular/core": "^6.0.0",
-    "rxjs": "^6.0.0",
+    "@angular/core": "^7.0.0",
+    "rxjs": "^7.0.0",
     "zone.js": "~0.8.20"
   }
 }

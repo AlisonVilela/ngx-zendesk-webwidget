@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from "rxjs";
-
 import { ZendeskWebwidgetConfig } from './ng-zendesk-webwidget.model';
+
 
 function getWindow (): any {
   return window;

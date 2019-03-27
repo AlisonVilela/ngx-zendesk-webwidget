@@ -9,7 +9,7 @@ before_deploy:
 - ls
 deploy:
   provider: npm
-  email: alison.vilela@live.nl
+  email: markus@thiels.se
   skip_cleanup: true
   api_key:
     secure: $NPM_TOKEN
