@@ -6,8 +6,8 @@
     "url": "https://github.com/mackelito/ng-zendesk-webwidget.git"
   },
   "author": {
-    "name": "Alison Vilela",
-    "email": "alison.vilela@live.nl"
+    "name": "Markus Thiel",
+    "email": "markus@thiels.se"
   },
   "keywords": [
     "angular",
@@ -22,8 +22,8 @@
   "jsnext:main": "ng-zendesk-webwidget.js",
   "typings": "ng-zendesk-webwidget.d.ts",
   "peerDependencies": {
-    "@angular/core": "6.0.0",
-    "rxjs": "6.0.0",
-    "zone.js": "0.8.20"
+    "@angular/core": "^6.0.0",
+    "rxjs": "^6.0.0",
+    "zone.js": "~0.8.20"
   }
 }

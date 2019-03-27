@@ -62,7 +62,7 @@
     "ts-node": "4.1.0",
     "tslint": "5.9.1",
     "typescript": "2.7.2",
-    "zone.js": "0.8.20"
+    "zone.js": "~0.8.20"
   },
   "engines": {
     "node": "6.0.0"
