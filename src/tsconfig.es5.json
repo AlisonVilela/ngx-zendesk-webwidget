@@ -21,10 +21,10 @@
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
-    "flatModuleOutFile": "ngx-zendesk-webwidget.js",
-    "flatModuleId": "ngx-zendesk-webwidget"
+    "flatModuleOutFile": "ng-zendesk-webwidget.js",
+    "flatModuleId": "ng-zendesk-webwidget"
   },
   "files": [
-    "./ngx-zendesk-webwidget.module.ts"
+    "./ng-zendesk-webwidget.module.ts"
   ]
 }

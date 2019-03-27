@@ -1,11 +1,11 @@
 {
-  "name": "ngx-zendesk-webwidget",
+  "name": "ng-zendesk-webwidget",
   "version": "0.1.4",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
     "docs": "npm run docs:build",
-    "docs:build": "compodoc -p tsconfig.json -n ngx-zendesk-webwidget -d docs --hideGenerator",
+    "docs:build": "compodoc -p tsconfig.json -n ng-zendesk-webwidget -d docs --hideGenerator",
     "docs:serve": "npm run docs:build -- -s",
     "docs:watch": "npm run docs:build -- -s -w",
     "lint": "tslint --type-check --project tsconfig.json src/**/*.ts",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/AlisonVilela/ngx-zendesk-webwidget.git"
+    "url": "https://github.com/mackelito/ng-zendesk-webwidget.git"
   },
   "author": {
     "name": "Alison Vilela",
@@ -26,19 +26,19 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AlisonVilela/ngx-zendesk-webwidget/issues"
+    "url": "https://github.com/mackelito/ng-zendesk-webwidget/issues"
   },
   "devDependencies": {
-    "@angular/common": "6.0.0",
-    "@angular/compiler": "6.0.0",
-    "@angular/compiler-cli": "6.0.0",
-    "@angular/core": "6.0.0",
-    "@angular/platform-browser": "6.0.0",
-    "@angular/platform-browser-dynamic": "6.0.0",
+    "@angular/common": "^6.0.0",
+    "@angular/compiler": "^6.0.0",
+    "@angular/compiler-cli": "^6.0.0",
+    "@angular/core": "^6.0.0",
+    "@angular/platform-browser": "^6.0.0",
+    "@angular/platform-browser-dynamic": "^6.0.0",
     "@compodoc/compodoc": "1.0.5",
     "@types/jasmine": "2.8.4",
     "@types/node": "9.3.0",
-    "codelyzer": "4.1.0",
+    "codelyzer": "4.5.0",
     "core-js": "2.5.3",
     "del": "3.0.0",
     "gulp": "3.9.1",

@@ -1,26 +1,23 @@
-[![Dependency Status](https://dependencyci.com/github/AlisonVilela/ngx-zendesk-webwidget/badge)](https://dependencyci.com/github/AlisonVilela/ngx-zendesk-webwidget)
-[![Maintainability](https://api.codeclimate.com/v1/badges/75bc5877b3bf6939fe44/maintainability)](https://codeclimate.com/github/AlisonVilela/ngx-zendesk-webwidget/maintainability)
-[![Build Status](https://travis-ci.org/AlisonVilela/ngx-zendesk-webwidget.svg?branch=master)](https://travis-ci.org/AlisonVilela/ngx-zendesk-webwidget)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/AlisonVilela/ngx-zendesk-webwidget/issues)
-[![Join the chat at https://gitter.im/ngx-zendesk-webwidget/Lobby](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dwyl/?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Dependency Status](https://dependencyci.com/github/mackelito/ng-zendesk-webwidget/badge)](https://dependencyci.com/github/mackelito/ng-zendesk-webwidget)
+[![Maintainability](https://api.codeclimate.com/v1/badges/933c908a637cbd67013b/maintainability)](https://codeclimate.com/github/mackelito/ng-zendesk-webwidget/maintainability)
+[![Build Status](https://travis-ci.org/mackelito/ng-zendesk-webwidget.svg?branch=master)](https://travis-ci.org/mackelito/ng-zendesk-webwidget)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/mackelito/ng-zendesk-webwidget/issues)
 
-# ngx-zendesk-webwidget
+# ng-zendesk-webwidget
 
-Zendesk-Webwidget for Angular 2+
-
-Zendesk-Webwidget for Angular 1.x see [here](https://github.com/CrossLead/angular-zendesk-widget)
+Zendesk-Webwidget for Angular
 
 ## Installation
 
-Via [npm](https://www.npmjs.com/package/ngx-zendesk-webwidget):
+Via [npm](https://www.npmjs.com/package/ng-zendesk-webwidget):
 
 ```bash
-$ npm install ngx-zendesk-webwidget --save
+$ npm install ng-zendesk-webwidget --save
 ```
 
 ## Usage
 
-#### 1. Import the `ngxZendeskWebwidgetModule`:
+#### 1. Import the `NgZendeskWebwidgetModule`:
 
 ```ts
 import { BrowserModule } from '@angular/platform-browser';
@@ -28,7 +25,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-import { ngxZendeskWebwidgetModule } from 'ngx-zendesk-webwidget';
+import { ngZendeskWebwidgetModule } from 'ng-zendesk-webwidget';
 
 @NgModule({
   declarations: [
@@ -36,7 +33,7 @@ import { ngxZendeskWebwidgetModule } from 'ngx-zendesk-webwidget';
   ],
   imports: [
     BrowserModule,
-    ngxZendeskWebwidgetModule.forRoot()
+    ngZendeskWebwidgetModule.forRoot()
   ],
   bootstrap: [AppComponent]
 })
@@ -49,7 +46,7 @@ export class AppModule { }
 @NgModule({
     exports: [
         CommonModule,
-        ngxZendeskWebwidgetModule
+        ngZendeskWebwidgetModule
     ]
 })
 export class SharedModule { }
@@ -61,11 +58,11 @@ export class SharedModule { }
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
-import {ngxZendeskWebwidgetModule, ngxZendeskWebwidgetConfig} from 'ngx-zendesk-webwidget';
+import {ngZendeskWebwidgetModule, ZendeskWebwidgetConfig} from 'ng-zendesk-webwidget';
 
 import {AppComponent} from './app';
 
-export class ZendeskConfig extends ngxZendeskWebwidgetConfig {
+export class ZendeskConfig extends ZendeskWebwidgetConfig {
   accountUrl = 'yourdomain.zendesk.com';
   beforePageLoad(zE) {
     zE.setLocale('en');
@@ -77,17 +74,17 @@ export class ZendeskConfig extends ngxZendeskWebwidgetConfig {
     imports: [
         BrowserModule,
         HttpClientModule,
-        ngxZendeskWebwidgetModule.forRoot(ZendeskConfig)
+        ngZendeskWebwidgetModule.forRoot(ZendeskConfig)
     ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
 ```
 
-#### 2. Init the `ngxZendeskWebwidgetService` for your application:
+#### 2. Init the `ZendeskWebwidgetService` for your application:
 
 ```ts
-import { ngxZendeskWebwidgetService } from 'ngx-zendesk-webwidget';
+import { ZendeskWebwidgetService } from 'ng-zendesk-webwidget';
 
 @Component({
   selector: 'app',
@@ -95,7 +92,7 @@ import { ngxZendeskWebwidgetService } from 'ngx-zendesk-webwidget';
 })
 export class app {
 
-  constructor(private _ngxZendeskWebwidgetService: ngxZendeskWebwidgetService) {
+  constructor(private _ZendeskWebwidgetService: ZendeskWebwidgetService) {
   }
 }
 ```
@@ -103,22 +100,22 @@ export class app {
 #### 3. Example to usage:
 
 ```ts
-  constructor(private _ngxZendeskWebwidgetService: ngxZendeskWebwidgetService) {
-    _ngxZendeskWebwidgetService.identify({
+  constructor(private _ZendeskWebwidgetService: ZendeskWebwidgetService) {
+    _ZendeskWebwidgetService.identify({
      name: 'Alison Vilela',
      email: 'alison.vilela@live.nl'
     })
-    _ngxZendeskWebwidgetService.show()
+    _ZendeskWebwidgetService.show()
   }
 
   logout(){
-    _ngxZendeskWebwidgetService.hide()
+    _ZendeskWebwidgetService.hide()
   }
 }
 ```
 ## API
 
-### ngxZendeskWebwidgetService
+### ZendeskWebwidgetService
 
 #### Methods:
 
@@ -132,20 +129,20 @@ export class app {
 
 For more info, see: [ZendeskAPI](https://developer.zendesk.com/embeddables/docs/widget/api)
 
-#### ngxZendeskWebwidgetConfig:
+#### ZendeskWebwidgetConfig:
 
 - `accountUrl`: Url of your domain (example.zendesk.com)
 - `beforePageLoad`: Callback, executed after Zendesk loaded
 
 ## Issues
 
-Please report bugs and issues [here](https://github.com/AlisonVilela/ngx-zendesk-webwidget/issues).
+Please report bugs and issues [here](https://github.com/mackelito/ng-zendesk-webwidget/issues).
 
 ## License
 
-MIT © [Alison Vilela](https://github.com/AlisonVilela)
+MIT © [Alison Vilela](https://github.com/mackelito)
 
-## Change log
+# Change log
 
 ### v0.1.4
 

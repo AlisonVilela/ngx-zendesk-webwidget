@@ -66,7 +66,7 @@ gulp.task('rollup:fesm', function () {
 
       // Bundle's entry point
       // See "input" in https://rollupjs.org/#core-functionality
-      input: `${buildFolder}/ngx-zendesk-webwidget.js`,
+      input: `${buildFolder}/ng-zendesk-webwidget.js`,
 
       // Allow mixing of hypothetical and actual files. "Actual" files can be files
       // accessed by Rollup or produced by plugins further down the chain.
@@ -101,7 +101,7 @@ gulp.task('rollup:umd', function () {
 
       // Bundle's entry point
       // See "input" in https://rollupjs.org/#core-functionality
-      input: `${buildFolder}/ngx-zendesk-webwidget.js`,
+      input: `${buildFolder}/ng-zendesk-webwidget.js`,
 
       // Allow mixing of hypothetical and actual files. "Actual" files can be files
       // accessed by Rollup or produced by plugins further down the chain.
@@ -128,7 +128,7 @@ gulp.task('rollup:umd', function () {
         // The name to use for the module for UMD/IIFE bundles
         // (required for bundles with exports)
         // See "name" in https://rollupjs.org/#core-functionality
-        name: 'ngx-zendesk-webwidget',
+        name: 'ng-zendesk-webwidget',
 
         // See "globals" in https://rollupjs.org/#core-functionality
         globals: {
@@ -138,7 +138,7 @@ gulp.task('rollup:umd', function () {
         }
       }
     }))
-    .pipe(rename('ngx-zendesk-webwidget.umd.js'))
+    .pipe(rename('ng-zendesk-webwidget.umd.js'))
     .pipe(gulp.dest(distFolder));
 });
 

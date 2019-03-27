@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 
-import { ngxZendeskWebwidgetConfig } from './ngx-zendesk-webwidget.model';
+import { ZendeskWebwidgetConfig } from './ng-zendesk-webwidget.model';
 
 function getWindow (): any {
   return window;
@@ -14,12 +14,12 @@ interface VisibilityQueueItem {
 }
 
 @Injectable()
-export class ngxZendeskWebwidgetService {
+export class ZendeskWebwidgetService {
 
   private window
 
-  constructor(_ngxZendeskWebwidgetConfig?: ngxZendeskWebwidgetConfig) {
-    if (!_ngxZendeskWebwidgetConfig.accountUrl) {
+  constructor(_ZendeskWebwidgetConfig?: ZendeskWebwidgetConfig) {
+    if (!_ZendeskWebwidgetConfig.accountUrl) {
       throw new Error('Missing accountUrl. Please set in app config via ZendeskWidgetProvider');
     }
 
@@ -56,7 +56,7 @@ export class ngxZendeskWebwidgetService {
         e.id = "js-iframe-async",
         e.src = "https://assets.zendesk.com/embeddable_framework/main.js",
         this.t=+new Date,
-        this.zendeskHost = _ngxZendeskWebwidgetConfig.accountUrl,
+        this.zendeskHost = _ZendeskWebwidgetConfig.accountUrl,
         this.zEQueue=a,
         this.body.appendChild(e)
       },
@@ -65,7 +65,7 @@ export class ngxZendeskWebwidgetService {
     }();
 
     this.window.zE(() => {
-        _ngxZendeskWebwidgetConfig.beforePageLoad(this.window.zE)
+        _ZendeskWebwidgetConfig.beforePageLoad(this.window.zE)
       }
     )
   }
