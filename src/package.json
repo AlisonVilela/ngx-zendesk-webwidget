@@ -23,7 +23,7 @@
   "typings": "ng-zendesk-webwidget.d.ts",
   "peerDependencies": {
     "@angular/core": "^7.0.0",
-    "rxjs": "^7.0.0",
+    "rxjs": "^6.0.0",
     "zone.js": "~0.8.20"
   }
 }
