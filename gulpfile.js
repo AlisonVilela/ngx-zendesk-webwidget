@@ -5,7 +5,8 @@ var gulp = require('gulp'),
   rollup = require('gulp-rollup'),
   rename = require('gulp-rename'),
   del = require('del'),
-  runSequence = require('run-sequence'),
+  runSequence = require('gulp4-run-sequence'),
+  chmod = require('gulp-chmod'),
   inlineResources = require('./tools/gulp/inline-resources');
 
 const rootFolder = path.join(__dirname);
@@ -31,6 +32,7 @@ gulp.task('clean:dist', function () {
  */
 gulp.task('copy:source', function () {
   return gulp.src([`${srcFolder}/**/*`, `!${srcFolder}/node_modules`])
+    .pipe(chmod(666))
     .pipe(gulp.dest(tmpFolder));
 });
 
@@ -51,7 +53,7 @@ gulp.task('inline-resources', function () {
  *    As of Angular 5, ngc accepts an array and no longer returns a promise.
  */
 gulp.task('ngc', function () {
-  ngc([ '--project', `${tmpFolder}/tsconfig.es5.json` ]);
+  ngc(['--project', `${tmpFolder}/tsconfig.es5.json`]);
   return Promise.resolve()
 });
 
@@ -61,7 +63,7 @@ gulp.task('ngc', function () {
  */
 gulp.task('rollup:fesm', function () {
   return gulp.src(`${buildFolder}/**/*.js`)
-  // transform the files here.
+    // transform the files here.
     .pipe(rollup({
 
       // Bundle's entry point
@@ -96,7 +98,7 @@ gulp.task('rollup:fesm', function () {
  */
 gulp.task('rollup:umd', function () {
   return gulp.src(`${buildFolder}/**/*.js`)
-  // transform the files here.
+    // transform the files here.
     .pipe(rollup({
 
       // Bundle's entry point
@@ -138,6 +140,7 @@ gulp.task('rollup:umd', function () {
         }
       }
     }))
+    .pipe(chmod(666))
     .pipe(rename('ngx-zendesk-webwidget.umd.js'))
     .pipe(gulp.dest(distFolder));
 });
@@ -157,6 +160,7 @@ gulp.task('copy:build', function () {
  */
 gulp.task('copy:manifest', function () {
   return gulp.src([`${srcFolder}/package.json`])
+    .pipe(chmod(666))
     .pipe(gulp.dest(distFolder));
 });
 
@@ -182,7 +186,7 @@ gulp.task('clean:build', function () {
   return deleteFolders([buildFolder]);
 });
 
-gulp.task('compile', function () {
+gulp.task('compile', async function () {
   runSequence(
     'clean:dist',
     'copy:source',
@@ -197,7 +201,7 @@ gulp.task('compile', function () {
     'clean:tmp',
     function (err) {
       if (err) {
-        console.log('ERROR:', err.message);
+        console.log('ERROR:', err);
         deleteFolders([distFolder, tmpFolder, buildFolder]);
       } else {
         console.log('Compilation finished succesfully');
@@ -212,11 +216,11 @@ gulp.task('watch', function () {
   gulp.watch(`${srcFolder}/**/*`, ['compile']);
 });
 
-gulp.task('clean', ['clean:dist', 'clean:tmp', 'clean:build']);
+gulp.task('clean', gulp.series('clean:dist', 'clean:tmp', 'clean:build'));
 
-gulp.task('build', ['clean', 'compile']);
-gulp.task('build:watch', ['build', 'watch']);
-gulp.task('default', ['build:watch']);
+gulp.task('build', gulp.series('clean', 'compile'));
+gulp.task('build:watch', gulp.series('build', 'watch'));
+gulp.task('default', gulp.series('build:watch'));
 
 /**
  * Deletes the specified folder
