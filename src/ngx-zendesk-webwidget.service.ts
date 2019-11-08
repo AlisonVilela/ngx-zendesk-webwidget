@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from "rxjs";
-
 import { ngxZendeskWebwidgetConfig } from './ngx-zendesk-webwidget.model';
 
 function getWindow (): any {
@@ -39,9 +37,9 @@ export class ngxZendeskWebwidgetService {
       r.src = "javascript:false",
       r.title = "",
       r.style.cssText = "display: none",
-      d = document.getElementsByTagName("script"),
+      d = document.getElementsByTagName("head"),
       d = d[d.length - 1],
-      d.parentNode.insertBefore(r, d),
+      d.appendChild(r),
       i = r.contentWindow,
       s = i.document;
       try {
