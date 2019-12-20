@@ -1,9 +1,3 @@
-[![Dependency Status](https://dependencyci.com/github/AlisonVilela/ngx-zendesk-webwidget/badge)](https://dependencyci.com/github/AlisonVilela/ngx-zendesk-webwidget)
-[![Maintainability](https://api.codeclimate.com/v1/badges/75bc5877b3bf6939fe44/maintainability)](https://codeclimate.com/github/AlisonVilela/ngx-zendesk-webwidget/maintainability)
-[![Build Status](https://travis-ci.org/AlisonVilela/ngx-zendesk-webwidget.svg?branch=master)](https://travis-ci.org/AlisonVilela/ngx-zendesk-webwidget)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/AlisonVilela/ngx-zendesk-webwidget/issues)
-[![Join the chat at https://gitter.im/ngx-zendesk-webwidget/Lobby](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dwyl/?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 # ngx-zendesk-webwidget
 
 Zendesk-Webwidget for Angular 2+
@@ -105,8 +99,8 @@ export class app {
 ```ts
   constructor(private _ngxZendeskWebwidgetService: ngxZendeskWebwidgetService) {
     _ngxZendeskWebwidgetService.identify({
-     name: 'Alison Vilela',
-     email: 'alison.vilela@live.nl'
+     name: 'Andreas Larssen',
+     email: 'andreas@halloverden.no'
     })
     _ngxZendeskWebwidgetService.show()
   }
@@ -139,11 +133,11 @@ For more info, see: [ZendeskAPI](https://developer.zendesk.com/embeddables/docs/
 
 ## Issues
 
-Please report bugs and issues [here](https://github.com/AlisonVilela/ngx-zendesk-webwidget/issues).
+Please report bugs and issues [here](https://github.com/halloverden/ngx-zendesk-webwidget/issues).
 
 ## License
 
-MIT © [Alison Vilela](https://github.com/AlisonVilela)
+MIT © [Hallo Verden AS](https://github.com/halloverden)
 
 ## Change log
 
