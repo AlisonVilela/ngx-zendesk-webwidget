@@ -141,6 +141,10 @@ MIT © [Hallo Verden AS](https://github.com/halloverden)
 
 ## Change log
 
+### v0.1.5
+
+- Changed the way the widget gets injected
+
 ### v0.1.4
 
 - Support Angular 6
