@@ -6,7 +6,7 @@ Zendesk-Webwidget for Angular 1.x see [here](https://github.com/CrossLead/angula
 
 ## Installation
 
-Via [npm](https://www.npmjs.com/package/ngx-zendesk-webwidget):
+Via [npm](https://www.npmjs.com/package/@halloverden/ngx-zendesk-webwidget):
 
 ```bash
 $ npm install ngx-zendesk-webwidget --save
