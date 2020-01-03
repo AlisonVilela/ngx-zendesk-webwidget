@@ -6,9 +6,9 @@ var gulp = require('gulp'),
   rename = require('gulp-rename'),
   del = require('del'),
   runSequence = require('gulp4-run-sequence'),
-  chmod = require('gulp-chmod'),
-  inlineResources = require('./tools/gulp/inline-resources');
-
+  inlineResources = require('./tools/gulp/inline-resources'),
+  ngFsUtils = require('@angular/compiler-cli/src/ngtsc/file_system');
+  
 const rootFolder = path.join(__dirname);
 const srcFolder = path.join(rootFolder, 'src');
 const tmpFolder = path.join(rootFolder, '.tmp');
@@ -32,7 +32,6 @@ gulp.task('clean:dist', function () {
  */
 gulp.task('copy:source', function () {
   return gulp.src([`${srcFolder}/**/*`, `!${srcFolder}/node_modules`])
-    .pipe(chmod(666))
     .pipe(gulp.dest(tmpFolder));
 });
 
@@ -53,6 +52,7 @@ gulp.task('inline-resources', function () {
  *    As of Angular 5, ngc accepts an array and no longer returns a promise.
  */
 gulp.task('ngc', function () {
+  ngFsUtils.setFileSystem(new ngFsUtils.NodeJSFileSystem());
   ngc(['--project', `${tmpFolder}/tsconfig.es5.json`]);
   return Promise.resolve()
 });
@@ -140,7 +140,6 @@ gulp.task('rollup:umd', function () {
         }
       }
     }))
-    .pipe(chmod(666))
     .pipe(rename('ngx-zendesk-webwidget.umd.js'))
     .pipe(gulp.dest(distFolder));
 });
@@ -160,7 +159,6 @@ gulp.task('copy:build', function () {
  */
 gulp.task('copy:manifest', function () {
   return gulp.src([`${srcFolder}/package.json`])
-    .pipe(chmod(666))
     .pipe(gulp.dest(distFolder));
 });
 
