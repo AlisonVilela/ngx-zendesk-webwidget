@@ -10,16 +10,17 @@
     "email": "andreas@halloverden.no"
   },
   "keywords": [
-    "angular"
+    "angular",
+    "zendesk"
   ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/halloverden/ngx-zendesk-webwidget/issues"
   },
-  "main": "dist/ngx-zendesk-webwidget.umd.js",
-  "module": "dist/ngx-zendesk-webwidget.js",
-  "jsnext:main": "dist/ngx-zendesk-webwidget.js",
-  "typings": "dist/ngx-zendesk-webwidget.d.ts",
+  "main": "ngx-zendesk-webwidget.umd.js",
+  "module": "ngx-zendesk-webwidget.js",
+  "jsnext:main": "ngx-zendesk-webwidget.js",
+  "typings": "ngx-zendesk-webwidget.d.ts",
   "peerDependencies": {
     "@angular/core": "^8.2.14",
     "rxjs": "^6.5.4",
