@@ -1,6 +1,6 @@
 {
   "name": "ngx-zendesk-webwidget",
-  "version": "0.1.4",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/AlisonVilela/ngx-zendesk-webwidget.git"
@@ -22,7 +22,6 @@
   "typings": "ngx-zendesk-webwidget.d.ts",
   "peerDependencies": {
     "@angular/core": "6.0.0",
-    "rxjs": "6.0.0",
     "zone.js": "0.8.20"
   }
 }

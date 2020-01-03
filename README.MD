@@ -1,10 +1,8 @@
-[![Dependency Status](https://dependencyci.com/github/AlisonVilela/ngx-zendesk-webwidget/badge)](https://dependencyci.com/github/AlisonVilela/ngx-zendesk-webwidget)
+# ngx-zendesk-webwidget
+
 [![Maintainability](https://api.codeclimate.com/v1/badges/75bc5877b3bf6939fe44/maintainability)](https://codeclimate.com/github/AlisonVilela/ngx-zendesk-webwidget/maintainability)
 [![Build Status](https://travis-ci.org/AlisonVilela/ngx-zendesk-webwidget.svg?branch=master)](https://travis-ci.org/AlisonVilela/ngx-zendesk-webwidget)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/AlisonVilela/ngx-zendesk-webwidget/issues)
-[![Join the chat at https://gitter.im/ngx-zendesk-webwidget/Lobby](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dwyl/?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-# ngx-zendesk-webwidget
 
 Zendesk-Webwidget for Angular 2+
 
@@ -15,12 +13,12 @@ Zendesk-Webwidget for Angular 1.x see [here](https://github.com/CrossLead/angula
 Via [npm](https://www.npmjs.com/package/ngx-zendesk-webwidget):
 
 ```bash
-$ npm install ngx-zendesk-webwidget --save
+npm install ngx-zendesk-webwidget --save
 ```
 
 ## Usage
 
-#### 1. Import the `ngxZendeskWebwidgetModule`:
+### 1. Import the `NgxZendeskWebwidgetModule`
 
 ```ts
 import { BrowserModule } from '@angular/platform-browser';
@@ -28,7 +26,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-import { ngxZendeskWebwidgetModule } from 'ngx-zendesk-webwidget';
+import { NgxZendeskWebwidgetModule } from 'ngx-zendesk-webwidget';
 
 @NgModule({
   declarations: [
@@ -36,20 +34,20 @@ import { ngxZendeskWebwidgetModule } from 'ngx-zendesk-webwidget';
   ],
   imports: [
     BrowserModule,
-    ngxZendeskWebwidgetModule.forRoot()
+    NgxZendeskWebwidgetModule.forRoot()
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 ```
 
-##### SharedModule
+#### SharedModule
 
 ```ts
 @NgModule({
     exports: [
         CommonModule,
-        ngxZendeskWebwidgetModule
+        NgxZendeskWebwidgetModule
     ]
 })
 export class SharedModule { }
@@ -58,14 +56,14 @@ export class SharedModule { }
 ##### Configuration
 
 ```ts
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-import {ngxZendeskWebwidgetModule, ngxZendeskWebwidgetConfig} from 'ngx-zendesk-webwidget';
+import { NgxZendeskWebwidgetModule, NgxZendeskWebwidgetConfig } from 'ngx-zendesk-webwidget';
 
-import {AppComponent} from './app';
+import { AppComponent } from './app';
 
-export class ZendeskConfig extends ngxZendeskWebwidgetConfig {
+export class ZendeskConfig extends NgxZendeskWebwidgetConfig {
   accountUrl = 'yourdomain.zendesk.com';
   beforePageLoad(zE) {
     zE.setLocale('en');
@@ -77,17 +75,59 @@ export class ZendeskConfig extends ngxZendeskWebwidgetConfig {
     imports: [
         BrowserModule,
         HttpClientModule,
-        ngxZendeskWebwidgetModule.forRoot(ZendeskConfig)
+        NgxZendeskWebwidgetModule.forRoot(ZendeskConfig)
     ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
 ```
 
-#### 2. Init the `ngxZendeskWebwidgetService` for your application:
+##### Configuration with Lazyload
 
 ```ts
-import { ngxZendeskWebwidgetService } from 'ngx-zendesk-webwidget';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { NgxZendeskWebwidgetModule, NgxZendeskWebwidgetConfig } from 'ngx-zendesk-webwidget';
+
+import { AppComponent } from './app';
+
+export class ZendeskConfig extends NgxZendeskWebwidgetConfig {
+  lazyLoad = true;
+  accountUrl = 'yourdomain.zendesk.com';
+  beforePageLoad(zE) {
+    zE.setLocale('en');
+    zE.hide();
+  }
+}
+
+@NgModule({
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        NgxZendeskWebwidgetModule.forRoot(ZendeskConfig)
+    ],
+    bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+##### Lazyload load
+
+```ts
+import { NgxZendeskWebwidgetService } from 'ngx-zendesk-webwidget';
+
+public initZendesk(): void {
+  this.zendeskWidgetService.initZendesk();
+}
+```
+
+#### 2. Init the `NgxZendeskWebwidgetService`
+
+##### For your application
+
+```ts
+import { NgxZendeskWebwidgetService } from 'ngx-zendesk-webwidget';
 
 @Component({
   selector: 'app',
@@ -95,32 +135,50 @@ import { ngxZendeskWebwidgetService } from 'ngx-zendesk-webwidget';
 })
 export class app {
 
-  constructor(private _ngxZendeskWebwidgetService: ngxZendeskWebwidgetService) {
+  constructor(private _NgxZendeskWebwidgetService: NgxZendeskWebwidgetService) {
   }
 }
 ```
 
-#### 3. Example to usage:
+##### With Lazyload
 
 ```ts
-  constructor(private _ngxZendeskWebwidgetService: ngxZendeskWebwidgetService) {
-    _ngxZendeskWebwidgetService.identify({
+import { NgxZendeskWebwidgetService } from 'ngx-zendesk-webwidget';
+
+@Component({
+  selector: 'app',
+  templateUrl: './app.html'
+})
+export class app {
+
+  constructor(private _NgxZendeskWebwidgetService: NgxZendeskWebwidgetService) {
+    this._NgxZendeskWebwidgetService_.initZendesk();
+  }
+}
+```
+
+#### 3. Example to usage
+
+```ts
+  constructor(private _NgxZendeskWebwidgetService: NgxZendeskWebwidgetService) {
+    _NgxZendeskWebwidgetService.identify({
      name: 'Alison Vilela',
-     email: 'alison.vilela@live.nl'
+     email: 'yourbestemail@email.com'
     })
-    _ngxZendeskWebwidgetService.show()
+    _NgxZendeskWebwidgetService.show()
   }
 
   logout(){
-    _ngxZendeskWebwidgetService.hide()
+    _NgxZendeskWebwidgetService.hide()
   }
 }
 ```
+
 ## API
 
-### ngxZendeskWebwidgetService
+### NgxZendeskWebwidgetService
 
-#### Methods:
+#### Methods
 
 - `setLocale(locale)`: Set locale to change language.
 - `identify(userObj)`: If your user is signed in, you can use this methods for to pass the details of that user to your Zendesk.
@@ -132,8 +190,10 @@ export class app {
 
 For more info, see: [ZendeskAPI](https://developer.zendesk.com/embeddables/docs/widget/api)
 
-#### ngxZendeskWebwidgetConfig:
+#### NgxZendeskWebwidgetConfig
 
+- `lazyLoad`: Boolean for activate Lazyload initialization of Zendesk Web Widget
+- `timeOut`: Timeout in milliseconds of the timer before opening the widget, zendesk unfortunately needs to load more files after the initial promise has been resolved, such as translation files. (default: 30 seconds)
 - `accountUrl`: Url of your domain (example.zendesk.com)
 - `beforePageLoad`: Callback, executed after Zendesk loaded
 
@@ -146,6 +206,13 @@ Please report bugs and issues [here](https://github.com/AlisonVilela/ngx-zendesk
 MIT © [Alison Vilela](https://github.com/AlisonVilela)
 
 ## Change log
+
+### v1.0.0
+
+- Update Packages
+- Change Class name to pascal case (breaking changes)
+- Lazyload Implemented, based on (https://github.com/AlisonVilela/ngx-zendesk-webwidget/pull/23)
+- Configure Timeout on Webwidget initialization
 
 ### v0.1.5
 
