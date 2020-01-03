@@ -147,6 +147,10 @@ MIT © [Alison Vilela](https://github.com/AlisonVilela)
 
 ## Change log
 
+### v0.1.5
+
+- Support Angular 8
+
 ### v0.1.4
 
 - Support Angular 6
