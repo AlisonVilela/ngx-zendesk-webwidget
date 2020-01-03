@@ -141,6 +141,11 @@ MIT © [Hallo Verden AS](https://github.com/halloverden)
 
 ## Change log
 
+### v0.2.0
+
+- Bumped package versions
+- Updated build script
+
 ### v0.1.5
 
 - Changed the way the widget gets injected
