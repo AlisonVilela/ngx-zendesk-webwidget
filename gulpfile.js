@@ -1,11 +1,12 @@
 /* eslint-disable */
 var gulp = require('gulp'),
   path = require('path'),
+  ngFsUtils = require('@angular/compiler-cli/src/ngtsc/file_system'),
   ngc = require('@angular/compiler-cli/src/main').main,
   rollup = require('gulp-rollup'),
   rename = require('gulp-rename'),
   del = require('del'),
-  runSequence = require('run-sequence'),
+  runSequence = require('gulp4-run-sequence'),
   inlineResources = require('./tools/gulp/inline-resources');
 
 const rootFolder = path.join(__dirname);
@@ -51,7 +52,8 @@ gulp.task('inline-resources', function () {
  *    As of Angular 5, ngc accepts an array and no longer returns a promise.
  */
 gulp.task('ngc', function () {
-  ngc([ '--project', `${tmpFolder}/tsconfig.es5.json` ]);
+  ngFsUtils.setFileSystem(new ngFsUtils.NodeJSFileSystem());
+  ngc(['--project', `${tmpFolder}/tsconfig.es5.json`]);
   return Promise.resolve()
 });
 
@@ -182,7 +184,7 @@ gulp.task('clean:build', function () {
   return deleteFolders([buildFolder]);
 });
 
-gulp.task('compile', function () {
+gulp.task('compile', async function () {
   runSequence(
     'clean:dist',
     'copy:source',
@@ -197,7 +199,7 @@ gulp.task('compile', function () {
     'clean:tmp',
     function (err) {
       if (err) {
-        console.log('ERROR:', err.message);
+        console.log('ERROR:', err);
         deleteFolders([distFolder, tmpFolder, buildFolder]);
       } else {
         console.log('Compilation finished succesfully');
@@ -209,14 +211,14 @@ gulp.task('compile', function () {
  * Watch for any change in the /src folder and compile files
  */
 gulp.task('watch', function () {
-  gulp.watch(`${srcFolder}/**/*`, ['compile']);
+  gulp.watch(`${srcFolder}/**/*`, gulp.series('compile'));
 });
 
-gulp.task('clean', ['clean:dist', 'clean:tmp', 'clean:build']);
+gulp.task('clean', gulp.series('clean:dist', 'clean:tmp', 'clean:build'));
 
-gulp.task('build', ['clean', 'compile']);
-gulp.task('build:watch', ['build', 'watch']);
-gulp.task('default', ['build:watch']);
+gulp.task('build', gulp.series('clean', 'compile'));
+gulp.task('build:watch', gulp.series('build', 'watch'));
+gulp.task('default', gulp.series('build:watch'));
 
 /**
  * Deletes the specified folder
