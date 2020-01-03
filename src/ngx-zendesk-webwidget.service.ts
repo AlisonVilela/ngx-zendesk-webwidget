@@ -75,7 +75,7 @@ export class NgxZendeskWebwidgetService {
       const timeout = setTimeout(() => {
         this.initialized = false;
         reject(Error('timeout'));
-      }, 30000); // 30 seconds
+      }, this.ngxZendeskWebwidgetConfig.timeOut || 30000); // 30 seconds
 
       this.window.zE(() => {
         this.ngxZendeskWebwidgetConfig.beforePageLoad(this.window.zE);

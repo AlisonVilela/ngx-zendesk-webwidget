@@ -192,6 +192,7 @@ For more info, see: [ZendeskAPI](https://developer.zendesk.com/embeddables/docs/
 #### NgxZendeskWebwidgetConfig
 
 - `lazyLoad`: Boolean for activate Lazyload initialization of Zendesk Web Widget
+- `timeOut`: Timeout in milliseconds of the timer before opening the widget, zendesk unfortunately needs to load more files after the initial promise has been resolved, such as translation files. (default: 30 seconds)
 - `accountUrl`: Url of your domain (example.zendesk.com)
 - `beforePageLoad`: Callback, executed after Zendesk loaded
 
@@ -209,6 +210,8 @@ MIT © [Alison Vilela](https://github.com/AlisonVilela)
 
 - Update Packages
 - Change Class name to pascal case (breaking changes)
+- Lazyload Implemented, based on (https://github.com/AlisonVilela/ngx-zendesk-webwidget/pull/23)
+- Configure Timeout on Webwidget initialization
 
 ### v0.1.5
 
