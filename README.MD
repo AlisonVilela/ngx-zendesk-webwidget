@@ -141,6 +141,10 @@ MIT © [Hallo Verden AS](https://github.com/halloverden)
 
 ## Change log
 
+### v0.2.1
+
+- Bumped project version
+
 ### v0.2.0
 
 - Bumped package versions
