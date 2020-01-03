@@ -141,6 +141,10 @@ MIT © [Hallo Verden AS](https://github.com/halloverden)
 
 ## Change log
 
+### v0.2.3
+
+- Edited package.json file paths and keywords
+
 ### v0.2.2
 
 - Tweaked Angular compiler options

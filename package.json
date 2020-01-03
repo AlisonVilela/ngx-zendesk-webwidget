@@ -1,6 +1,6 @@
 {
   "name": "@halloverden/ngx-zendesk-webwidget",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
@@ -22,7 +22,8 @@
     "email": "andreas@halloverden.no"
   },
   "keywords": [
-    "angular"
+    "angular",
+    "zendesk"
   ],
   "license": "MIT",
   "bugs": {
@@ -71,15 +72,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "files": [
-    "dist"
-  ],
-  "main": "dist/ng-zendesk-webwidget.umd.js",
-  "module": "dist/ng-zendesk-webwidget.js",
-  "jsnext:main": "dist/ng-zendesk-webwidget.js",
-  "typings": "dist/ng-zendesk-webwidget.d.ts",
-  "dependencies": {
-    "@angular/cli": "^8.2.14"
   }
 }
