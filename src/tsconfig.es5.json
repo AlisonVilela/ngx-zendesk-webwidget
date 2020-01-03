@@ -19,8 +19,9 @@
   },
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,
-    "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "fullTemplateTypeCheck": true,
     "flatModuleOutFile": "ngx-zendesk-webwidget.js",
     "flatModuleId": "ngx-zendesk-webwidget"
   },
