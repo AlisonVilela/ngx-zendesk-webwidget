@@ -46,8 +46,8 @@ export class AppModule { }
 ```ts
 @NgModule({
     exports: [
-        CommonModule,
-        NgxZendeskWebwidgetModule
+      CommonModule,
+      NgxZendeskWebwidgetModule
     ]
 })
 export class SharedModule { }
@@ -65,9 +65,9 @@ import { AppComponent } from './app';
 
 export class ZendeskConfig extends NgxZendeskWebwidgetConfig {
   accountUrl = 'yourdomain.zendesk.com';
-  beforePageLoad(zE) {
-    zE.setLocale('en');
-    zE.hide();
+  callback(zE) {
+    // You can call every command you want in here
+    zE('webWidget', 'hide');
   }
 }
 
@@ -95,31 +95,21 @@ import { AppComponent } from './app';
 export class ZendeskConfig extends NgxZendeskWebwidgetConfig {
   lazyLoad = true;
   accountUrl = 'yourdomain.zendesk.com';
-  beforePageLoad(zE) {
-    zE.setLocale('en');
-    zE.hide();
+  callback(zE) {
+    // You can call every command you want in here
+    zE('webWidget', 'hide');
   }
 }
 
 @NgModule({
     imports: [
-        BrowserModule,
-        HttpClientModule,
-        NgxZendeskWebwidgetModule.forRoot(ZendeskConfig)
+      BrowserModule,
+      HttpClientModule,
+      NgxZendeskWebwidgetModule.forRoot(ZendeskConfig)
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [ AppComponent ]
 })
 export class AppModule { }
-```
-
-##### Lazyload load
-
-```ts
-import { NgxZendeskWebwidgetService } from 'ngx-zendesk-webwidget';
-
-public initZendesk(): void {
-  this.zendeskWidgetService.initZendesk();
-}
 ```
 
 #### 2. Init the `NgxZendeskWebwidgetService`
@@ -135,8 +125,8 @@ import { NgxZendeskWebwidgetService } from 'ngx-zendesk-webwidget';
 })
 export class app {
 
-  constructor(private _NgxZendeskWebwidgetService: NgxZendeskWebwidgetService) {
-  }
+  constructor(private _NgxZendeskWebwidgetService: NgxZendeskWebwidgetService) { }
+
 }
 ```
 
@@ -154,6 +144,7 @@ export class app {
   constructor(private _NgxZendeskWebwidgetService: NgxZendeskWebwidgetService) {
     this._NgxZendeskWebwidgetService_.initZendesk();
   }
+
 }
 ```
 
@@ -161,15 +152,27 @@ export class app {
 
 ```ts
   constructor(private _NgxZendeskWebwidgetService: NgxZendeskWebwidgetService) {
-    _NgxZendeskWebwidgetService.identify({
-     name: 'Alison Vilela',
-     email: 'yourbestemail@email.com'
-    })
-    _NgxZendeskWebwidgetService.show()
+    this._NgxZendeskWebwidgetService.zE('webWidget', 'identify', {
+     name: 'Fulano de Tal',
+     email: 'your_user_email@email.com'
+    });
+
+    this._NgxZendeskWebwidgetService.zE('webWidget', 'prefill', {
+        name: {
+        value: 'Fulano de Tal',
+        readOnly: true
+      },
+      email: {
+        value: 'your_user_email@email.com',
+        readOnly: true
+      }
+    });
+
+    this._NgxZendeskWebwidgetService.zE('webWidget', 'show');
   }
 
   logout(){
-    _NgxZendeskWebwidgetService.hide()
+    this._NgxZendeskWebwidgetService.zE('webWidget', 'hide');
   }
 }
 ```
@@ -180,22 +183,14 @@ export class app {
 
 #### Methods
 
-- `setLocale(locale)`: Set locale to change language.
-- `identify(userObj)`: If your user is signed in, you can use this methods for to pass the details of that user to your Zendesk.
-- `hide()`: The method completely hides all parts of the Widget from the page.
-- `show()`: The method displays the Widget on the host page in its starting 'button' state.
-- `activate(options)`: The method activates and opens the Widget in its starting state.
-- `setHelpCenterSuggestions(options)`: The method enhances the contextual help provided by the Web Widget.
-- `setSettings(settings)`: The method sets `window.zESettings`.
-
-For more info, see: [ZendeskAPI](https://developer.zendesk.com/embeddables/docs/widget/api)
+- `zE('webWidget:<action>', '<event|property>', <parameters>)`: All commands follow the same basic syntax. Please see [Zendesk Documentation](https://developer.zendesk.com/embeddables/docs/widget/introduction) for more information.
 
 #### NgxZendeskWebwidgetConfig
 
 - `lazyLoad`: Boolean for activate Lazyload initialization of Zendesk Web Widget
 - `timeOut`: Timeout in milliseconds of the timer before opening the widget, zendesk unfortunately needs to load more files after the initial promise has been resolved, such as translation files. (default: 30 seconds)
 - `accountUrl`: Url of your domain (example.zendesk.com)
-- `beforePageLoad`: Callback, executed after Zendesk loaded
+- `callback`: Callback, executed after Zendesk loaded
 
 ## Issues
 
@@ -207,11 +202,20 @@ MIT © [Alison Vilela](https://github.com/AlisonVilela)
 
 ## Change log
 
+### V2.0.0
+
+- API services that used legacy zE methods (setLocale, identify, hide, show, activate, setHelpCenterSuggestions, setSettings) have been removed, you now need to use the new command syntax for greater flexibility (breaking changes)
+- beforePageLoad(zE) changed to callback(zE) (breaking changes)
+
+### V1.0.1
+
+- Fix bugs
+
 ### v1.0.0
 
 - Update Packages
 - Change Class name to pascal case (breaking changes)
-- Lazyload Implemented, based on (https://github.com/AlisonVilela/ngx-zendesk-webwidget/pull/23)
+- Lazyload Implemented, based on [Pull 23](https://github.com/AlisonVilela/ngx-zendesk-webwidget/pull/23)
 - Configure Timeout on Webwidget initialization
 
 ### v0.1.5

@@ -11,6 +11,7 @@ export class NgxZendeskWebwidgetService {
 
   private window;
   private initialized = false;
+  public zE;
 
   constructor(private ngxZendeskWebwidgetConfig?: NgxZendeskWebwidgetConfig) {
     if (!this.ngxZendeskWebwidgetConfig.accountUrl) {
@@ -19,16 +20,13 @@ export class NgxZendeskWebwidgetService {
 
     this.window = getWindow();
 
-    if (!ngxZendeskWebwidgetConfig.lazyLoad) {
-      this.initZendesk();
+    if (!this.ngxZendeskWebwidgetConfig.lazyLoad) {
+      this.initZendesk(this.ngxZendeskWebwidgetConfig);
     }
   }
 
-  public initZendesk(): Promise<boolean> {
+  public initZendesk(config: NgxZendeskWebwidgetConfig): Promise<boolean> {
     const window = this.window;
-    // Following is essentially a copy paste of JS portion of the Zendesk embed code
-    // with our settings subbed in. For more info, see:
-    // https://support.zendesk.com/hc/en-us/articles/203908456-Using-Web-Widget-to-embed-customer-service-in-your-website
 
     // tslint:disable
     window.zEmbed || function(e, t) {
@@ -57,7 +55,7 @@ export class NgxZendeskWebwidgetService {
         e.id = "js-iframe-async",
         e.src = "https://assets.zendesk.com/embeddable_framework/main.js",
         this.t=+new Date,
-        this.zendeskHost = this._NgxZendeskWebwidgetConfig.accountUrl,
+        this.zendeskHost = config.accountUrl,
         this.zEQueue=a,
         this.body.appendChild(e)
       },
@@ -78,8 +76,9 @@ export class NgxZendeskWebwidgetService {
       }, this.ngxZendeskWebwidgetConfig.timeOut || 30000); // 30 seconds
 
       this.window.zE(() => {
-        this.ngxZendeskWebwidgetConfig.beforePageLoad(this.window.zE);
+        this.ngxZendeskWebwidgetConfig.callback(this.window.zE);
         this.initialized = true;
+        this.zE = this.window.zE;
         clearTimeout(timeout);
         resolve(true);
       });
@@ -89,45 +88,4 @@ export class NgxZendeskWebwidgetService {
   public isInitialized(): boolean {
     return this.initialized;
   }
-
-  public setLocale(locale) {
-    this.window.zE(() => {
-      this.window.zE.setLocale(locale);
-    });
-  }
-
-  public identify(userObj) {
-    this.window.zE(() => {
-      this.window.zE.identify(userObj);
-    });
-  }
-
-  public hide() {
-    this.window.zE(() => {
-      this.window.zE.hide();
-    });
-  }
-
-  public show() {
-    this.window.zE(() => {
-      this.window.zE.show();
-    });
-  }
-
-  public activate(options?) {
-    this.window.zE(() => {
-      this.window.zE.activate(options);
-    });
-  }
-
-  public setHelpCenterSuggestions(options) {
-    this.window.zE(() => {
-      this.window.zE.setHelpCenterSuggestions(options);
-    });
-  }
-
-  public setSettings(settings) {
-    this.window.zESettings = settings;
-  }
-
 }

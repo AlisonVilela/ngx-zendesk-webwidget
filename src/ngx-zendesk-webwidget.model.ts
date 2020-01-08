@@ -1,6 +1,6 @@
 export abstract class NgxZendeskWebwidgetConfig {
-  abstract lazyLoad = false;
-  abstract timeOut: number;
+  lazyLoad: boolean;
+  timeOut: number;
   abstract accountUrl: string;
-  abstract beforePageLoad(zE): any;
+  abstract callback(zE): any;
 }
