@@ -151,29 +151,28 @@ export class app {
 #### 3. Example to usage
 
 ```ts
-  constructor(private _NgxZendeskWebwidgetService: NgxZendeskWebwidgetService) {
-    this._NgxZendeskWebwidgetService.zE('webWidget', 'identify', {
-     name: 'Fulano de Tal',
-     email: 'your_user_email@email.com'
-    });
+constructor(private _NgxZendeskWebwidgetService: NgxZendeskWebwidgetService) {
+  this._NgxZendeskWebwidgetService.zE('webWidget', 'identify', {
+    name: 'Fulano de Tal',
+    email: 'your_user_email@email.com'
+  });
 
-    this._NgxZendeskWebwidgetService.zE('webWidget', 'prefill', {
-        name: {
-        value: 'Fulano de Tal',
-        readOnly: true
-      },
-      email: {
-        value: 'your_user_email@email.com',
-        readOnly: true
-      }
-    });
+  this._NgxZendeskWebwidgetService.zE('webWidget', 'prefill', {
+      name: {
+      value: 'Fulano de Tal',
+      readOnly: true
+    },
+    email: {
+      value: 'your_user_email@email.com',
+      readOnly: true
+    }
+  });
 
-    this._NgxZendeskWebwidgetService.zE('webWidget', 'show');
-  }
+  this._NgxZendeskWebwidgetService.zE('webWidget', 'show');
+}
 
-  logout(){
-    this._NgxZendeskWebwidgetService.zE('webWidget', 'hide');
-  }
+logout(){
+  this._NgxZendeskWebwidgetService.zE('webWidget', 'hide');
 }
 ```
 
@@ -189,6 +188,7 @@ export class app {
 
 - `lazyLoad`: Boolean for activate Lazyload initialization of Zendesk Web Widget
 - `timeOut`: Timeout in milliseconds of the timer before opening the widget, zendesk unfortunately needs to load more files after the initial promise has been resolved, such as translation files. (default: 30 seconds)
+- `injectionTag`: You can identify which tag will be used as a reference for widget injection('head', 'body', 'script'). (Default: 'head')
 - `accountUrl`: Url of your domain (example.zendesk.com)
 - `callback`: Callback, executed after Zendesk loaded
 
@@ -201,6 +201,10 @@ Please report bugs and issues [here](https://github.com/AlisonVilela/ngx-zendesk
 MIT © [Alison Vilela](https://github.com/AlisonVilela)
 
 ## Change log
+
+### v2.1.0
+
+- Include injectionTag in NgxZendeskWebwidgetConfig based on [issue 30](https://github.com/AlisonVilela/ngx-zendesk-webwidget/issues/30)
 
 ### V2.0.0
 
