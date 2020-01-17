@@ -38,7 +38,7 @@ export class NgxZendeskWebwidgetService {
       r.src = "javascript:false",
       r.title = "",
       r.style.cssText = "display: none",
-      d = document.getElementsByTagName("script"),
+      d = document.getElementsByTagName(this.ngxZendeskWebwidgetConfig.injectionTag ? this.ngxZendeskWebwidgetConfig.injectionTag : "head"),
       d = d[d.length - 1],
       d.parentNode.insertBefore(r, d),
       i = r.contentWindow,
