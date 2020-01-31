@@ -202,6 +202,10 @@ MIT © [Alison Vilela](https://github.com/AlisonVilela)
 
 ## Change log
 
+### v2.1.1
+
+- Fix injectionTag in NgxZendeskWebwidgetConfig based on [issue 30](https://github.com/AlisonVilela/ngx-zendesk-webwidget/issues/30) by [mps2209](https://github.com/mps2209)
+
 ### v2.1.0
 
 - Include injectionTag in NgxZendeskWebwidgetConfig based on [issue 30](https://github.com/AlisonVilela/ngx-zendesk-webwidget/issues/30)
