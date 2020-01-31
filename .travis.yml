@@ -11,6 +11,7 @@ deploy:
   provider: npm
   email: alison.vilela@live.nl
   skip_cleanup: true
+  edge: true
   api_key:
     secure: $NPM_TOKEN
   on:
