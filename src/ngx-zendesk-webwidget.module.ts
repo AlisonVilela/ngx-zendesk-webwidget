@@ -1,15 +1,10 @@
 import { NgModule, ModuleWithProviders, Type } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { NgxZendeskWebwidgetConfig } from './ngx-zendesk-webwidget.model';
 import { NgxZendeskWebwidgetService } from './ngx-zendesk-webwidget.service';
 
-@NgModule({
-  imports: [
-    CommonModule
-  ]
-})
+@NgModule({})
 export class NgxZendeskWebwidgetModule {
-  static forRoot(zendeskConfig: Type<NgxZendeskWebwidgetConfig>): ModuleWithProviders {
+  static forRoot(zendeskConfig: Type<NgxZendeskWebwidgetConfig>): ModuleWithProviders<NgxZendeskWebwidgetModule> {
     return {
       ngModule: NgxZendeskWebwidgetModule,
       providers: [
