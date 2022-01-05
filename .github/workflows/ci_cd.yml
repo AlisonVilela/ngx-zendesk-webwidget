@@ -37,6 +37,6 @@ jobs:
           token: ${{ secrets.NPM_TOKEN }}
 
       - name: Finishing
-      - if: steps.Deploy.outputs.type != 'none'
+        if: steps.Deploy.outputs.type != 'none'
         run: |
           echo "Version changed: ${{ steps.Deploy.outputs.old-version }} => ${{ steps.Deploy.outputs.version }}"
