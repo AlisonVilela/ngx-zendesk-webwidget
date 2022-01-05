@@ -16,10 +16,12 @@ jobs:
           key: node_modules-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             node_modules-
+
       - name: Install Dependencies
         run: npm install
 
   Build:
+    needs: install
     runs-on: ubuntu-latest
 
     steps:
