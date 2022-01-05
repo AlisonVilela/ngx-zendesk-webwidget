@@ -3,35 +3,71 @@ name: CI
 on: [push]
 
 jobs:
-  build:
+  Install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            node_modules-
+      - name: Install Dependencies
+        run: npm install
+
+  Build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: '14.x'
-
-      - name: Cache Node
-        id: cache-node
-        uses: actions/cache@v1
+      - name: Load node_modules
+        uses: actions/cache@v2
         with:
           path: node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+          key: node_modules-${{ hashFiles('package-lock.json') }}
 
-      - name: Install Dependencies
-        run: npm install
+      - name: Cache dist
+        uses: actions/cache@v2
+        with:
+          path: dist
+          key: dist-${{ github.sha }}
+          restore-keys: |
+            dist-
 
       - name: Build
-        run: |
-          npm run build
-          cd dist/ngx-zendesk-webwidget
+        run: npm run build
+
+  Deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Load node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Load dist
+        uses: actions/cache@v2
+        with:
+          path: dist
+          key: dist-${{ github.sha }}
+
+      - name: Open folder
+        run: cd dist/ngx-zendesk-webwidget
 
       - name: Deploy
-        if: github.ref == 'refs/heads/master'
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
