@@ -202,6 +202,12 @@ MIT © [Alison Vilela](https://github.com/AlisonVilela)
 
 ## Change log
 
+### v3.0.0
+
+- Support Angular 13
+- Changed the library core
+- Fix initZendesk parameters based on [issue 47](https://github.com/AlisonVilela/ngx-zendesk-webwidget/issues/47) and [issue 43](https://github.com/AlisonVilela/ngx-zendesk-webwidget/issues/43)
+
 ### v2.1.1
 
 - Fix injectionTag in NgxZendeskWebwidgetConfig based on [issue 30](https://github.com/AlisonVilela/ngx-zendesk-webwidget/issues/30) by [mps2209](https://github.com/mps2209)

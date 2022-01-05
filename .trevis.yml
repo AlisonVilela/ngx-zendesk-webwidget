@@ -1,12 +1,12 @@
 language: node_js
 node_js:
-- 12.4.0
+  - 12.4.0
 after_success:
-- npm run build
-- ls
+  - npm run build
+  - ls
 before_deploy:
-- cd dist
-- ls
+  - cd dist/
+  - ls
 deploy:
   provider: npm
   email: alison.vilela@live.nl
