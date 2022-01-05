@@ -31,11 +31,12 @@ jobs:
           cd dist/ngx-zendesk-webwidget
 
       - name: Deploy
-
+        if: github.ref == 'refs/heads/master'
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
 
+      - name: Finishing
       - if: steps.Deploy.outputs.type != 'none'
         run: |
           echo "Version changed: ${{ steps.Deploy.outputs.old-version }} => ${{ steps.Deploy.outputs.version }}"
