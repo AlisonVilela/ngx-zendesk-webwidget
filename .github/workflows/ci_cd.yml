@@ -1,0 +1,80 @@
+name: CI
+
+on: [push]
+
+jobs:
+  Install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            node_modules-
+
+      - name: Install Dependencies
+        run: npm install
+
+  Build:
+    needs: install
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Load node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Cache dist
+        uses: actions/cache@v2
+        with:
+          path: dist
+          key: dist-${{ github.sha }}
+          restore-keys: |
+            dist-
+
+      - name: Build
+        run: npm run build
+
+  Deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Load node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Load dist
+        uses: actions/cache@v2
+        with:
+          path: dist
+          key: dist-${{ github.sha }}
+
+      - name: Open folder
+        run: cd dist/ngx-zendesk-webwidget
+
+      - name: Deploy
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+
+      - name: Finishing
+        if: steps.Deploy.outputs.type != 'none'
+        run: |
+          echo "Version changed: ${{ steps.Deploy.outputs.old-version }} => ${{ steps.Deploy.outputs.version }}"

@@ -6,14 +6,16 @@ function getWindow(): any {
   return window;
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class NgxZendeskWebwidgetService {
 
-  private window;
+  private readonly window: any;
   private initialized = false;
-  public zE;
+  private _zE: any;
 
-  constructor(private ngxZendeskWebwidgetConfig?: NgxZendeskWebwidgetConfig) {
+  constructor(private ngxZendeskWebwidgetConfig: NgxZendeskWebwidgetConfig) {
     if (!this.ngxZendeskWebwidgetConfig.accountUrl) {
       throw new Error('Missing accountUrl. Please set in app config via ZendeskWidgetProvider');
     }
@@ -21,45 +23,48 @@ export class NgxZendeskWebwidgetService {
     this.window = getWindow();
 
     if (!this.ngxZendeskWebwidgetConfig.lazyLoad) {
-      this.initZendesk(this.ngxZendeskWebwidgetConfig);
+      this.initZendesk();
     }
   }
 
-  public initZendesk(config: NgxZendeskWebwidgetConfig): Promise<boolean> {
+  public initZendesk(): Promise<boolean> {
     const window = this.window;
+    const config = this.ngxZendeskWebwidgetConfig;
 
     // tslint:disable
     window.zEmbed || function(e, t) {
-      var n, o, d, i, s, a = [],
-      r = document.createElement("iframe");
+      let n, o, d, i, s, a = []
+      let r = document.createElement("iframe")
       window.zEmbed = function() {
         a.push(arguments)
-      }, window.zE = window.zE || window.zEmbed,
-      r.src = "javascript:false",
-      r.title = "",
-      r.style.cssText = "display: none",
-      d = document.getElementsByTagName(config.injectionTag || "head"),
-      d = d[d.length - 1],
-      d.parentNode.insertBefore(r, d),
-      i = r.contentWindow,
-      s = i.document;
+      }
+      window.zE = window.zE || window.zEmbed
+      r.src = "javascript:false"
+      r.title = ""
+      r.style.cssText = "display: none"
+      d = document.getElementsByTagName(config.injectionTag || "head")
+      d = d[d.length - 1]
+      d.parentNode.insertBefore(r, d)
+      i = r.contentWindow
+      s = i.document
       try {
         o = s
       } catch (e) {
-        n = document.domain, r.src = 'javascript:var d=document.open();d.domain="' + n + '";void(0);',
+        n = document.domain
+        r.src = 'javascript:var d=document.open();d.domain="' + n + '";void(0);'
         o = s
       }
       o.open()._l = function() {
-        var e = this.createElement("script");
-        n && (this.domain = n),
-        e.id = "js-iframe-async",
-        e.src = "https://assets.zendesk.com/embeddable_framework/main.js",
-        this.t=+new Date,
-        this.zendeskHost = config.accountUrl,
-        this.zEQueue=a,
+        let e = this.createElement("script")
+        n && (this.domain = n)
+        e.id = "js-iframe-async"
+        e.src = "https://static.zdassets.com/ekr/snippet.js"
+        this.t += new Date
+        this.zendeskHost = config.accountUrl
+        this.zEQueue = a
         this.body.appendChild(e)
-      },
-      o.write('<body onload="document._l();">'),
+      }
+      o.write('<body onload="document._l();">')
       o.close()
     }();
     // tslint:enable
@@ -78,14 +83,18 @@ export class NgxZendeskWebwidgetService {
       this.window.zE(() => {
         this.ngxZendeskWebwidgetConfig.callback(this.window.zE);
         this.initialized = true;
-        this.zE = this.window.zE;
+        this._zE = this.window.zE;
         clearTimeout(timeout);
         resolve(true);
       });
     });
   }
 
-  public isInitialized(): boolean {
+  get isInitialized(): boolean {
     return this.initialized;
+  }
+
+  get zE(): any {
+    return this._zE
   }
 }

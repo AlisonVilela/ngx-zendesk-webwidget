@@ -1,6 +1,6 @@
 {
   "name": "ngx-zendesk-webwidget",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/AlisonVilela/ngx-zendesk-webwidget.git"
@@ -16,12 +16,10 @@
   "bugs": {
     "url": "https://github.com/AlisonVilela/ngx-zendesk-webwidget/issues"
   },
-  "main": "ngx-zendesk-webwidget.umd.js",
-  "module": "ngx-zendesk-webwidget.js",
-  "jsnext:main": "ngx-zendesk-webwidget.js",
-  "typings": "ngx-zendesk-webwidget.d.ts",
   "peerDependencies": {
-    "@angular/core": "8.2.14",
-    "zone.js": "0.10.2"
+    "@angular/core": "^13.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
   }
 }

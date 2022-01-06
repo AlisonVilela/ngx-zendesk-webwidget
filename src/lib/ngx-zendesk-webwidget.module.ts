@@ -1,6 +1,6 @@
-import { NgModule, ModuleWithProviders, Type } from '@angular/core';
-import { NgxZendeskWebwidgetConfig } from './ngx-zendesk-webwidget.model';
-import { NgxZendeskWebwidgetService } from './ngx-zendesk-webwidget.service';
+import { NgModule, ModuleWithProviders, Type } from '@angular/core'
+import { NgxZendeskWebwidgetConfig } from './ngx-zendesk-webwidget.model'
+import { NgxZendeskWebwidgetService } from './ngx-zendesk-webwidget.service'
 
 @NgModule({})
 export class NgxZendeskWebwidgetModule {
@@ -11,11 +11,6 @@ export class NgxZendeskWebwidgetModule {
         {provide: NgxZendeskWebwidgetConfig, useClass: zendeskConfig },
         {provide: NgxZendeskWebwidgetService, useClass: NgxZendeskWebwidgetService, deps: [NgxZendeskWebwidgetConfig] }
       ]
-    };
+    }
   }
 }
-
-export {
-  NgxZendeskWebwidgetService,
-  NgxZendeskWebwidgetConfig
-};

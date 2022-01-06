@@ -18,6 +18,8 @@ npm install ngx-zendesk-webwidget --save
 
 ## Usage
 
+The examples were made using the classic web widget
+
 ### 1. Import the `NgxZendeskWebwidgetModule`
 
 ```ts
@@ -63,11 +65,12 @@ import { NgxZendeskWebwidgetModule, NgxZendeskWebwidgetConfig } from 'ngx-zendes
 
 import { AppComponent } from './app';
 
-export class ZendeskConfig extends NgxZendeskWebwidgetConfig {
+export class ZendeskConfig implements NgxZendeskWebwidgetConfig {
   accountUrl = 'yourdomain.zendesk.com';
   callback(zE) {
     // You can call every command you want in here
-    zE('webWidget', 'hide');
+    // zE('webWidget', 'hide');
+    // zE('webWidget', 'show');
   }
 }
 
@@ -92,12 +95,13 @@ import { NgxZendeskWebwidgetModule, NgxZendeskWebwidgetConfig } from 'ngx-zendes
 
 import { AppComponent } from './app';
 
-export class ZendeskConfig extends NgxZendeskWebwidgetConfig {
-  lazyLoad = true;
+export class ZendeskConfig implements NgxZendeskWebwidgetConfig {
+  override lazyLoad = true;
   accountUrl = 'yourdomain.zendesk.com';
   callback(zE) {
     // You can call every command you want in here
-    zE('webWidget', 'hide');
+    // zE('webWidget', 'hide');
+    // zE('webWidget', 'show');
   }
 }
 
@@ -151,36 +155,40 @@ export class app {
 #### 3. Example to usage
 
 ```ts
-constructor(private _NgxZendeskWebwidgetService: NgxZendeskWebwidgetService) {
-  this._NgxZendeskWebwidgetService.zE('webWidget', 'identify', {
-    name: 'Fulano de Tal',
-    email: 'your_user_email@email.com'
-  });
-
-  this._NgxZendeskWebwidgetService.zE('webWidget', 'prefill', {
-      name: {
-      value: 'Fulano de Tal',
-      readOnly: true
-    },
-    email: {
-      value: 'your_user_email@email.com',
-      readOnly: true
-    }
-  });
-
-  this._NgxZendeskWebwidgetService.zE('webWidget', 'show');
-}
-
-logout(){
-  this._NgxZendeskWebwidgetService.zE('webWidget', 'hide');
-}
+  constructor(private _NgxZendeskWebwidgetService: NgxZendeskWebwidgetService) {
+    this._NgxZendeskWebwidgetService.zE('webWidget', 'identify', {
+      name: 'Fulano de Tal',
+      email: 'your_user_email@email.com'
+    });
+  
+    this._NgxZendeskWebwidgetService.zE('webWidget', 'prefill', {
+        name: {
+        value: 'Fulano de Tal',
+        readOnly: true
+      },
+      email: {
+        value: 'your_user_email@email.com',
+        readOnly: true
+      }
+    });
+  
+    this._NgxZendeskWebwidgetService.zE('webWidget', 'show');
+  }
+  
+  logout() {
+    this._NgxZendeskWebwidgetService.zE('webWidget', 'hide');
+  }
 ```
 
 ## API
 
 ### NgxZendeskWebwidgetService
 
-#### Methods
+### Web Widget (Messenger)
+
+- The new web widget is not as supported as the classic one, you can check the documentation [here](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/web/sdk_api_reference/).
+
+### Web widget (Classic)
 
 - `zE('webWidget:<action>', '<event|property>', <parameters>)`: All commands follow the same basic syntax. Please see [Zendesk Documentation](https://developer.zendesk.com/embeddables/docs/widget/introduction) for more information.
 
@@ -196,11 +204,22 @@ logout(){
 
 Please report bugs and issues [here](https://github.com/AlisonVilela/ngx-zendesk-webwidget/issues).
 
+## To do
+
+- Tests with jest
+- Error handler
+
 ## License
 
 MIT © [Alison Vilela](https://github.com/AlisonVilela)
 
 ## Change log
+
+### v3.0.0
+
+- Support Angular 13
+- Changed the library core
+- Fix initZendesk parameters based on [issue 47](https://github.com/AlisonVilela/ngx-zendesk-webwidget/issues/47) and [issue 43](https://github.com/AlisonVilela/ngx-zendesk-webwidget/issues/43)
 
 ### v2.1.1
 

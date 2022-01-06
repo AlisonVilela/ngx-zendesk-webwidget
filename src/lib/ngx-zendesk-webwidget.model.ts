@@ -3,5 +3,5 @@ export abstract class NgxZendeskWebwidgetConfig {
   timeOut: number;
   injectionTag: 'head' | 'body' | 'script' | string;
   abstract accountUrl: string;
-  abstract callback(zE): any;
+  abstract callback(zE: any): any;
 }

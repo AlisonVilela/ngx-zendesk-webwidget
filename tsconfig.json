@@ -1,8 +1,15 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compilerOptions": {
+    "declaration": true,
+    "module": "es2015",
+    "target": "es5",
     "baseUrl": "./src",
+    "stripInternal": true,
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "moduleResolution": "node",
+    "outDir": "./build",
     "rootDir": "./src",
     "lib": [
       "es2015",
@@ -10,5 +17,14 @@
     ],
     "skipLibCheck": true,
     "types": []
-  }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "files": [
+    "./src/lib/ngx-zendesk-webwidget.module.ts"
+  ]
 }
