@@ -14,8 +14,3 @@ export class NgxZendeskWebwidgetModule {
     }
   }
 }
-
-export {
-  NgxZendeskWebwidgetService,
-  NgxZendeskWebwidgetConfig
-}
