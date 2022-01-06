@@ -13,7 +13,7 @@ export class NgxZendeskWebwidgetService {
 
   private readonly window: any;
   private initialized = false;
-  public zE: any;
+  private _zE: any;
 
   constructor(private ngxZendeskWebwidgetConfig: NgxZendeskWebwidgetConfig) {
     if (!this.ngxZendeskWebwidgetConfig.accountUrl) {
@@ -58,7 +58,7 @@ export class NgxZendeskWebwidgetService {
         let e = this.createElement("script")
         n && (this.domain = n)
         e.id = "js-iframe-async"
-        e.src = "https://assets.zendesk.com/embeddable_framework/main.js"
+        e.src = "https://static.zdassets.com/ekr/snippet.js"
         this.t += new Date
         this.zendeskHost = config.accountUrl
         this.zEQueue = a
@@ -83,14 +83,18 @@ export class NgxZendeskWebwidgetService {
       this.window.zE(() => {
         this.ngxZendeskWebwidgetConfig.callback(this.window.zE);
         this.initialized = true;
-        this.zE = this.window.zE;
+        this._zE = this.window.zE;
         clearTimeout(timeout);
         resolve(true);
       });
     });
   }
 
-  public isInitialized(): boolean {
+  get isInitialized(): boolean {
     return this.initialized;
+  }
+
+  get zE(): any {
+    return this._zE
   }
 }
