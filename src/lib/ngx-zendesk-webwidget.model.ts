@@ -1,7 +1,7 @@
-export interface NgxZendeskWebwidgetConfig {
-  lazyLoad?: boolean;
-  timeOut?: number;
-  injectionTag?: 'head' | 'body' | 'script' | string;
-  accountUrl: string;
-  callback(zE: any): any;
+export abstract class NgxZendeskWebwidgetConfig {
+  lazyLoad: boolean;
+  timeOut: number;
+  injectionTag: 'head' | 'body' | 'script' | string;
+  abstract accountUrl: string;
+  abstract callback(zE: any): any;
 }

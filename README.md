@@ -96,7 +96,7 @@ import { NgxZendeskWebwidgetModule, NgxZendeskWebwidgetConfig } from 'ngx-zendes
 import { AppComponent } from './app';
 
 export class ZendeskConfig implements NgxZendeskWebwidgetConfig {
-  lazyLoad = true;
+  override lazyLoad = true;
   accountUrl = 'yourdomain.zendesk.com';
   callback(zE) {
     // You can call every command you want in here
