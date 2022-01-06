@@ -65,7 +65,7 @@ import { NgxZendeskWebwidgetModule, NgxZendeskWebwidgetConfig } from 'ngx-zendes
 
 import { AppComponent } from './app';
 
-export class ZendeskConfig implements NgxZendeskWebwidgetConfig {
+export class ZendeskConfig extends NgxZendeskWebwidgetConfig {
   accountUrl = 'yourdomain.zendesk.com';
   callback(zE) {
     // You can call every command you want in here
@@ -95,7 +95,7 @@ import { NgxZendeskWebwidgetModule, NgxZendeskWebwidgetConfig } from 'ngx-zendes
 
 import { AppComponent } from './app';
 
-export class ZendeskConfig implements NgxZendeskWebwidgetConfig {
+export class ZendeskConfig extends NgxZendeskWebwidgetConfig {
   override lazyLoad = true;
   accountUrl = 'yourdomain.zendesk.com';
   callback(zE) {
@@ -214,6 +214,10 @@ Please report bugs and issues [here](https://github.com/AlisonVilela/ngx-zendesk
 MIT © [Alison Vilela](https://github.com/AlisonVilela)
 
 ## Change log
+
+### v3.0.1
+
+- Fix documentation
 
 ### v3.0.0
 
