@@ -1,6 +1,6 @@
 {
-  "name": "@vmuresanu/ngx-zendesk-webwidget",
-  "version": "15.0.0",
+  "name": "ngx-zendesk-webwidget",
+  "version": "4.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
